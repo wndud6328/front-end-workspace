@@ -1,10 +1,20 @@
+### 목차
+
+- [선택자](#선택자)
+- [텍스트 스타일](#텍스트-스타일)
+- [색상 및 배경 스타일](#색상-및-배경-스타일)
+- [레이아웃 스타일](#레이아웃-스타일)
+- [반응형 웹](#반응형-웹)
+- [플렉스 박스](#flexflexible-box-flexbox)
+- [그리드](#grid)
+
 ## CSS(Cascading Style Sheet)
 
 - 웹 페이지의 표현(디자인)을 나타내는 언어
 - 특정 요소를 선택해서 원하는 "스타일"과 "기능"을 적용시킬 수 있음
 
 ```css
-selector(선택자){
+selector(선택자) {
     property(속성): value(값);
 }
 ```
@@ -15,13 +25,13 @@ selector(선택자){
 1. 인라인 방식
 
 ```html
-<tag style="property: value;">
+<tag style="property:value;">
 ```
 
 2. 내부 스타일
 ```html
 <style>
-    selector{
+    selector {
         property: value;
     }
 </style>
@@ -33,18 +43,22 @@ selector(선택자){
 
 ```html
 <head>
-    <link rel= "stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 ```
 ```css
-selector{
+selector {
     property: value;
 }
 ```
 
+<br>
+
+[위로 이동](#목차)
+
 ## 선택자
 
-1. 전체 선택자 : * 
+1. 전체 선택자 : *
 
 - HTML 문서 안의 모든 요소에 적용
 
@@ -62,7 +76,7 @@ selector{
 4. 아이디 선택자
 
 - 중복 불가
-- #name{}
+- #name {}
 - <태그 id="name">
 
 5. 그룹 선택자
@@ -81,23 +95,23 @@ selector{
 
 - 선택자[속성=속성값] : 일치
 - 선택자[속성*=속성값] or 선택자[속성~=속성값]: 포함
-- 선택자[속성^=속성값] or 선택자 [속성|=속성값]: 시작
+- 선택자[속성^=속성값] or 선택자[속성|=속성값] : 시작
 - 선택자[속성$=속성값] : 끝
 
 9. 형제 선택자
 
-- A + B : A 요소 뒤에 있는 B요소 "하나만" 선택
-- A ~ B : A 요소 뒤에 "모든"  B요소 선택
+- A + B : A 요소 뒤에 있는 B 요소 "하나만" 선택
+- A ~ B : A 요소 뒤에 "모든" B 요소 선택
 
 10. 구조 선택자
 - 웹 문서 구조를 기준으로 특정 위치에 있는 요소를 찾아 선택할 때 사용
-- 선택자: first-child : 첫 번째 요소
-- 선택자: first-of-type : 첫 번째 요소
-- 선택자: last-child : 마지막 요소
-- 선택자: last-of-type : 마지막 요소
+- 선택자:first-child : 첫 번째 요소
+- 선택자:first-of-type : 첫 번째 요소
+- 선택자:last-child : 마지막 요소
+- 선택자:last-of-type : 마지막 요소
 - 선택자:nth-child(n) : 앞에서부터 n번째 요소
-- 선택자: nth-of-type(n) : 앞에서부터 n번째 요소
-- 선택자: nth-last-child(n) : 뒤에서 부터 n번째 요소
+- 선택자:nth-of-type(n) : 앞에서부터 n번째 요소
+- 선택자:nth-last-child(n) : 뒤에서부터 n번째 요소
 - 선택자:nth-last-of-type(n) : 뒤에서부터 n번째 요소
 
 11. 반응 선택자
@@ -959,3 +973,178 @@ hsla(Hue(0~360), Saturation(0~100%), Brightness(0~100%), alpha(0~1));
 ```css
 order : 0 or 숫자;
 ```
+
+[위로 이동](#목차)
+
+# Grid
+
+- CSS 레이아웃 모델로 한 방향 레이아웃인 플렉스와 달리 두 방향(가로-세로) 레이아웃
+
+```html
+<div class="container">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</div>
+```
+
+## display: grid;
+
+- Grid 컨테이너에 display: grid;를 적용하면서 시작
+
+```css
+.container {
+    display: grid;
+}
+```
+
+## grid-template-rows, grid-template-columns
+
+- 컨테이너에 Grid 트랙(행 또는 열)의 크기들을 지정해주는 속성
+
+```css
+.container{   //rows 도 사용법이 똑같음
+    grid-template-columns: 200px 500px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 200px 1fr;
+    grid-template-columns: 100px 200px auto;
+}
+```
+
+## row-gap, column-gap, gap
+
+- 그리드 셀 사이의 간격을 설정하는 속성
+- 예전 브라우저에서는 grid-gap 사용
+
+```css
+.container{
+    row-gap: 10px;
+    column-gap: 20px;
+
+    gap: 10px 20px;
+}
+```
+
+### auto-fill, auto-fit
+
+- column 개수를 미리 정하지 않고 설정된 너비가 허용하는 한 최대의 셀을 채움
+- auto-fill 은 셀의 개수가 모자라면 공간이 남지만, auto-fit은 채움
+
+## gap
+
+- 
+
+## grid-auto-columns, grid-auto-rows
+
+- 톨제를 벗어난 위치에 있는 트랙의 크기를 지정하는 속성
+
+```css
+.container{
+    grid-auto-columns: 200px;
+    grid-auto-rows: 20%;
+}
+```
+
+## grid-column-start, grid-colum-end, grid-column, grid-row-start, grid-row-end, grid-row
+
+- 각 셀의 영역을 지정하는 속성
+
+```css
+.item{
+    grid-column: 1/4;
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+    grid-row: 2/4;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+```
+
+## justify-tems, align-items
+
+- 셀들의 정렬을 지정하는 속성
+
+```css
+.container{
+    justify-items: start;
+    justify-items: center;
+    justify-items: end;
+}
+```
+
+## justify-self, align-self
+
+- 각 하나의 셀의 정렬을 지정하는 속성
+
+```css
+.item{
+    justify-self: start;
+    justify-self: center;
+    justify-self: end;
+}
+```
+
+# 변형
+
+## transform
+
+- 사용자의 동작에 따라 크기나 형태가 변경되는 것
+
+```css
+선택자 {
+    transform: 변형함수();
+}
+```
+* 변형함수(3d, X, Y, Z)
+- scale : 지정한 크기만큼 확대/축소하는 함수
+- rotate : 지정한 각도만큼 회전시키는 함수
+- skew : 지정한 각도만큼 틀어서 왜곡하는 함수
+- translate: x축, y축, z축 방향으로 이동시키는 함수
+
+## transform-origin
+
+- 변형의 기준점을 변경하는 속성
+
+```css
+선택자{
+    transform-origin: X축 Y축 Z축;
+}
+```
+
+## transition
+
+- 전환효과
+
+```css
+선택자{
+    transition: 변환속성 애니메이션시간;
+}
+```
+
+- 변환속성 : 변환할 속성 (all로 지정되면 모든 속성 영향)
+- 애니메이션시간 : 애니메이션 재생 시간(duration) 지정
+
+
+## animation
+
+- CSS의 속성값 변화를 애니메이션화
+
+```css
+@keyframes 애니메이션이름 {
+    from { 시작 프레임 설정 }
+    to { 끝 프레임 설정 }
+    % { 단위로 지정 가능 }
+}
+
+선택자 { 
+    animation: name duration iteration-count timing-function delay direction;
+}
+```
+- animation-name : 설정된 keyframe 지정
+- animation-duration : 실행 시간 지정
+- animation-ireration-count : 반복 횟수 지정
+- animation-timing-function : 속도 형태 지정
+- animation-delay : 대기 시간 지정
+- animation-direction : 진행 형태 지정
